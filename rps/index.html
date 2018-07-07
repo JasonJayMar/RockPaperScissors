@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Rock, Paper, Scissors</title>
+  </head>
+  <body>
+
+    <div class="scoreboard">
+      <h2>Scoreboard</h2>
+      <table>
+        <tbody>
+          <tr>
+            <td id="player">0</td>
+            <td id="computer">0</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>You</th>
+            <th>Cpu</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+
+    <input id="rock" type="button" name="" value="Rock">
+    <input id="paper" type="button" name="" value="Paper">
+    <input id="scissors" type="button" name="" value="Scissors">
+    <span id="status"></span>
+    <span id="result"></span>
+    <span id="userChoice"></span>
+    <span id="cpuChoice"></span>
+    <script type="text/javascript">
+
+
+
+    let userScore=0
+    let cpuScore=0
+
+    //click event for rock
+    document.getElementById('rock').onclick= userThrowsRock
+    //click event for paper
+    document.getElementById('paper').onclick= userThrowsPaper
+    //click event for scissors
+    document.getElementById('scissors').onclick= userThrowsScissors
+
+    //function for rock
+    function userThrowsRock(){
+    let cpuWeapon = generateWeapon();
+    whoWon(cpuWeapon,"rock")
+    displayUserSelectionMessage("You chose Rock!")
+      displayCpuWeaponMessage(`Computer chose ${cpuWeapon}.`)
+    }
+    //function for paper
+    function userThrowsPaper(){
+    let cpuWeapon = generateWeapon();
+    whoWon(cpuWeapon,"paper")
+    displayUserSelectionMessage("You chose Paper!")
+      displayCpuWeaponMessage(`Computer chose ${cpuWeapon}.`)
+    }
+    //function for scissors
+    function userThrowsScissors(){
+    let cpuWeapon = generateWeapon();
+    whoWon(cpuWeapon,"scissors")
+    displayUserSelectionMessage("You chose Scissors!")
+      displayCpuWeaponMessage(`Computer chose ${cpuWeapon}.`)
+    }
+
+    // function for randon  weapon
+    function generateWeapon(){
+    let ranNum = Math.random();
+    let cpuWeapon = "rock"
+      if (ranNum < 0.34) {
+    	cpuWeapon = "paper";
+    } else if(ranNum <= 0.67) {
+    	cpuWeapon = "scissors";
+      }
+      return cpuWeapon;
+    }
+
+    //winning conditions
+    //function for checking who won
+    function whoWon(cpuWeapon,playersWeapon){
+    	if(cpuWeapon==playersWeapon){
+    		//determine if tie
+    		displayCompleteMessage("There was tie");
+    	}
+    	else if(
+    		(cpuWeapon=="scissors" && playersWeapon=="paper") ||
+    		(cpuWeapon=="paper" && playersWeapon=="rock") ||
+    		(cpuWeapon=="rock" && playersWeapon=="scissors")
+      ){
+        increaseComputerScore();
+      }
+      else {
+        increasePlayerScore();
+      }
+    }
+
+    // keeping track when player wins
+    function increasePlayerScore(){
+      userScore+=1;
+      document.getElementById('player').innerHTML = userScore;
+      displayCompleteMessage("You're A Winner");
+
+    }
+    // keeping track when computer wins
+    function increaseComputerScore(){
+      cpuScore+=1;
+      document.getElementById('computer').innerHTML = cpuScore;
+      displayCompleteMessage("Sorry, you're a loser");
+
+    }
+    //function for displaying message
+    function displayCompleteMessage(msg){
+    	document.getElementById("status").innerHTML=msg;
+    }
+    // display the result
+    function displayResult(msg) {
+      document.getElementById('result').innerHTML = msg;
+    }
+    // display the choice
+    function displayUserSelectionMessage(msg){
+      document.getElementById("userChoice").innerHTML=msg;
+    }
+
+    function displayCpuWeaponMessage(msg){
+        document.getElementById("cpuChoice").innerHTML=msg;
+    }
+    </script>
+  </body>
+</html>

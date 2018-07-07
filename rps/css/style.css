@@ -1,0 +1,30 @@
+body{
+  background-image: url("https://media.boingboing.net/wp-content/uploads/2018/05/cool-background1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+h2{
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+  width: 10%;
+}
+#player{
+  font-size: 44px;
+  width: 22%
+}
+#computer{
+  font-size: 44px;
+  width: 11%;
+}
+th{
+  font-size: 23px;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+  width: 30%;
+}
+input{
+  font-size: 30px;
+  width: 20%;
+}
